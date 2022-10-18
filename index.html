@@ -8,22 +8,23 @@
     <link rel="stylesheet" href="https://unpkg.com/sanitize.css">
     <link rel="stylesheet" href="./style.css">
     <script src="./script.js" defer></script>
+    <script src="./ui.js" defer></script>
     <script src="./segment.js"></script>
   </head>
   <body>
     <nav>
       <div id="top_nav">
         <h1>hayayomi</h1>
-        <div>本棚</div>
-        <div>検索</div>
-        <div>情報</div>
+        <div onclick="changepage('hon')" id="nav_hon">本棚</div>
+        <div onclick="changepage('ser')" id="nav_ser">検索</div>
+        <div onclick="changepage('inf')" id="nav_inf" class="nav-current">情報</div>
       </div>
       <div>
         <small>© 2022 Rikito Ohnishi</small>
       </div>
     </nav>
     <div id="right">
-      <div id="info">
+      <div id="inf">
         <h2>hayayomiとは</h2>
         <p>hayayomiとは高速逐次視覚提示（RSVP）を用いて高速に読書を行う事が出来るアプリケーションです。<br>
         RSVPとは同じ場所に単語を高速で表示する（フラッシュ暗算のように）事で読書に必要な眼球運動無くし高速に文字を読むことが出来る手法です。</p>
@@ -120,6 +121,12 @@
           </ol>
           <p style="text-align: right;">以上　</p>
         </div>
+      </div>
+      <div id="hon" class="non-visi">
+        本棚
+      </div>
+      <div id="ser" class="non-visi">
+        検索
       </div>
     </div>
   </body>
