@@ -1,0 +1,68 @@
+:root {
+  --bg:#FFFAF0;
+  --text:#000000;
+  --speak:#3f3f3f;
+  --navbg:#22272E;
+  --navtext:#e7e8e9;
+}
+
+body{
+  background-color: var(--bg);
+  display: flex;
+}
+h1{
+  margin: 0;
+  text-align: center;
+  padding: 20px 0;
+}
+nav{
+  background-color: var(--navbg);
+  color: var(--navtext);
+  width: 15vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+#top_nav{
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 30vh;
+  font-size: large;
+  font-weight: bold;
+}
+#top_nav div{
+  cursor: pointer;
+}
+#right{
+  width: 85vw;
+  overflow: hidden;
+}
+#info{
+  max-height: 100vh;
+  padding-left: 20px;
+  padding-right: 20px;
+  overflow-y: scroll;
+  color: var(--text);
+}
+#info h2{
+  border-left: 10px solid var(--speak);
+  padding-left: 8px;
+  border-bottom: dotted 1px var(--speak);
+  margin-right: 20px;
+}
+#info p{
+  padding-left: 20px;
+}
+#info ul{
+  padding-left: 60px;
+}
+#info_text{
+  padding-left: 40px;
+  padding-right: 40px;
+}

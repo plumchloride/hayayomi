@@ -11,6 +11,8 @@
 
 https://blog.usuyuki.net/%E4%BB%8A%E6%B5%81%E8%A1%8C%E3%81%AE%E9%AB%98%E9%80%9F%E9%80%90%E6%AC%A1%E8%A6%96%E8%A6%9A%E6%8F%90%E7%A4%BA%E3%81%A7%E8%A8%98%E4%BA%8B%E3%82%92%E7%B4%A0%E6%97%A9%E3%81%8F%E8%AA%AD%E3%82%80%E3%80%82/
 
+https://gigazine.net/news/20140228-spritz/
+
 https://play.google.com/store/apps/details?id=com.syunkansokudoku
 
 - 既存アプリケーションでは、現在の進捗が確認しにくく、読書の際につかれる

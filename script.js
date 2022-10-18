@@ -1,5 +1,5 @@
 const test_text = `私はその人を常に先生と呼んでいた。だからここでもただ先生と書くだけで本名は打ち明けない。これは世間を憚かる遠慮というよりも、その方が私にとって自然だからである。私はその人の記憶を呼び起すごとに、すぐ「先生」といいたくなる。筆を執っても心持は同じ事である。よそよそしい頭文字などはとても使う気にならない。`
-
+const hayayomi_setu ="hayayomiとは「高速逐次視覚提示」（RSVP）を用いて高速に読書を行う事が出来るアプリケーションです。RSVPとは同じ場所に単語を高速で表示する（フラッシュ暗算のように）事で読書に必要な眼球運動無くし高速に文字を読むことが出来る手法です。ただしこの手法では文字を後戻りする事が出来ず、文章への理解力に影響が出ます。また、適切な速度で読書を行う事でストレスレベル低下につながるため、本アプリケーションではリラックス目的には向いていません。以上より、内容への適切な理解・ストレスレベル低下には役立つ事はありませんが、文章の流し読みや全体の流れの把握に用いる事が出来ます。高速逐次視覚提示に用いる文章の分かち書きはすべてユーザーサイドで行っており、通信を行わないためセキュリティ面でも安全にご利用いただけます。"
 const narou = `
 　それは何かの予兆を孕んでいた訳でも無ければ、別段非日常的な光景でも無かった。少しだけに通常との差異を挙げるのなら、大学の帰り道に母校の制服を着た男女を見かけた程度。
 　男子二人に女子二人、同じ部活にでも所属しているのかすぐ前を歩く四人の高校生は楽しげに会話を行っており、エリートぼっちの俺には眩しい光景だ。特に女子高校生二人はクラストップの美少女と言って良いくらい可愛らしい容姿をしており、一緒に歩いている男子生徒二人が羨ましくもあった。丁度男女比1：1だし、カップル二組なのかもしれない……リア充とか、爆発すればいいのに……
@@ -308,38 +308,61 @@ const narou = `
 
 `
 
-const segmenter = new TinySegmenter();                 // インスタンス生成
+const segmenter = new TinySegmenter(); // インスタンス生成
+text = narou.replace(/\s+/g, '');
+console.log(text)
+const max_chara = 10
+const seg_add = ()=>{
+  //確定した分かち書きをひとつ前に足しても規定文字数未満の場合はくっつける
+  if(seg.length == 0){
+    ;
+  }else if(segarray.length == 0){
+    segarray.push(seg)
+    talk_array.push(current_talk)
+  }else if(segarray.slice(-1)[0].length + seg.length < max_chara && segarray.slice(-1)[0] != ""){
+    segarray.splice( -1, 1, segarray.slice(-1)[0] + seg)
+  }else{
+    segarray.push(seg)
+    talk_array.push(current_talk)
+  }
+  seg = ""
+}
 
-let segs = segmenter.segment(narou);  // 単語の配列が返る
-
-let segarray = []
-// 5mozi or 5+.,にすべき
-// 文字数ごとに表示時間を変えるから目を動かさなくていい程度の文字量にするべき＝＞１０文字ぐらいいけるのでは？
-// てにをは、で変える
+let segs = segmenter.segment(text);  // 単語の配列が返る
+var segarray = []
+var talk_array = []
+var current_talk = false
 let seg = ""
+let before_e = ""
 segs.forEach(e=>{
-  if(["「","」"].indexOf(e) != -1){
-    console.log(e)
-    segarray.push(seg)
+  if(e ==""){
+    ;
+  }else if(["「"].indexOf(e[0]) != -1){
+    seg_add()
+    current_talk = true
+    if(before_e != "」"){
+      segarray.push("")
+      talk_array.push("-false")
+    }
     seg = ""
-  }else if(["「","」"].indexOf(e[0]) != -1){
-    console.log(e)
-    segarray.push(seg)
+  }else if(["」"].indexOf(e[0]) != -1){
+    seg_add()
+    current_talk = false
+    segarray.push("")
+    talk_array.push("-false")
     seg = ""
   }else if(["て","に","を","は","と","、","。"].indexOf(e) != -1){
     // console.log(e)
     seg += e
-    segarray.push(seg)
-    seg = ""
-  }else if(seg.length + e.length < 10){
+    seg_add()
+  }else if(["…","!","?","！","？"].indexOf(e) != -1){
+    seg += e
+    seg_add()
+  }else if(seg.length + e.length < max_chara){
     seg += e
   }else{
-    segarray.push(seg)
+    seg_add()
     seg = e
   }
+  before_e = e
 })
-segarray.forEach(e=>console.log(e))
-
-const seg_check = ()=>{
-  //確定した分かち書きをひとつ前に足しても規定文字数未満の場合はくっつける
-}
