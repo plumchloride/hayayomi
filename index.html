@@ -9,12 +9,14 @@
     <link rel="stylesheet" href="./style.css">
     <script src="./script.js" defer></script>
     <script src="./ui.js" defer></script>
+    <script src="./canvas.js" defer></script>
     <script src="./segment.js"></script>
   </head>
   <body>
     <nav>
       <div id="top_nav">
         <h1>hayayomi</h1>
+        <div onclick="changepage('rea')" id="nav_rea">読書</div>
         <div onclick="changepage('hon')" id="nav_hon">本棚</div>
         <div onclick="changepage('ser')" id="nav_ser">検索</div>
         <div onclick="changepage('inf')" id="nav_inf" class="nav-current">情報</div>
@@ -121,6 +123,9 @@
           </ol>
           <p style="text-align: right;">以上　</p>
         </div>
+      </div>
+      <div id="rea" class="non-visi">
+        <canvas id="canvas">このブラウザは HTML5 Canvas に対応していません。</canvas>
       </div>
       <div id="hon" class="non-visi">
         本棚

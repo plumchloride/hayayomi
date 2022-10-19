@@ -81,3 +81,8 @@ nav{
   padding-left: 40px;
   padding-right: 40px;
 }
+
+#canvas{
+  width: 85vw;
+  height:70vh;
+}
