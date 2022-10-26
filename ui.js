@@ -15,7 +15,8 @@ const changepage = (topage)=>{
     if(topage == "rea" && e == topage){
       now_read = true
       read_change = true
-      create_hayayomi(["前の文","今の文","後の文"],1,[false,false,false],false);
+      run = false
+      create_hayayomi(save.bun,save.index,save.talk,false);
     }else if(!read_change){
       now_read = false
     }

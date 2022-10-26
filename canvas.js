@@ -14,6 +14,7 @@ var timeoutID = 0;
 var delay = 300;
 window.addEventListener("resize",()=>{
   if(now_read){
+    run = false;
     clearTimeout(timeoutID);
     timeoutID = setTimeout(function(){
         create_hayayomi(save.bun,save.index,save.talk,false);
@@ -53,15 +54,15 @@ const create_hayayomi = (arr,index,talk_arr,continue_flag = true)=>{
   }else{
     ctx.fillStyle = 'green';
   }
-  ctx.fillText(arr[index+1],max_canvas_size.x/2,text_start+(font_size/2 + font_size + lineheight * 2))
+  ctx.fillText(arr[index+1]||"",max_canvas_size.x/2,text_start+(font_size/2 + font_size + lineheight * 2))
 
   // 進捗表示
   ctx.beginPath();
   ctx.rect(max_canvas_size.x/10,50,8*(max_canvas_size.x/10),50);
   ctx.stroke();
-  // if(continue_flag && run){
-  if(true){
-    if(index >  arr.length){
+  if(continue_flag && run){
+  // if(true){
+    if(index >  arr.length-2){
       ;
     }else{
       setTimeout(()=>{create_hayayomi(arr,index+=1,talk_arr)},100)
