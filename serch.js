@@ -8,6 +8,7 @@ const ex_sarch = (sakusya)=>{
 }
 // 検索フォーム制御
 const serch = () =>{
+  $novels.innerHTML = ""
   var nov_name = document.getElementById("sakuhin").value
   var nov_tyosya = document.getElementById("tyosya").value
   var filter_name_index = []
@@ -18,22 +19,24 @@ const serch = () =>{
   var common_index = filter_name_index.filter(e => filter_tyosya_index.includes(e))
   var over = false
   common_index.forEach((e,index)=>{
-    if(index>100){
+    if(index>200){
       over = true
     }else{
-      console.log(serch_data.name[e])
+      create_serch_row(serch_data.name[e],serch_data.tyosya[e],serch_data.bunrui[e],serch_data.sakuhin_url[e],e)
     }
   })
   if(over){
-    console.log("80以上")
+    $novels.innerHTML += `<h2>200作品以上は表示されません。検索ワードを変更して下さい。<a href="#top_id">TOPに戻る</a></h2>`
   }
 }
 const random_serch = ()=>{
+  $novels.innerHTML = ""
   var random_index = []
   for(let i = 0;i<10;i++){
-    random_index.push(Math.floor(Math.random() * serch_data.name.length))
+    var random = Math.floor(Math.random() * serch_data.name.length)
+    random_index.push(random)
+    create_serch_row(serch_data.name[random],serch_data.tyosya[random],serch_data.bunrui[random],serch_data.sakuhin_url[random],random)
   }
-  console.log(random_index)
 }
 // イニシャライズ
 // NDC情報取得
@@ -100,4 +103,11 @@ const azozora_remove = (text)=>{
   text = text.replace(/□/g,"　")
   return text
 }
+const $novels = document.getElementById("novels")
+const create_serch_row = (novel_name,tyosya,genre,url,index)=>{
+  $novels.innerHTML += `<div id="n-${index}" class="novel"><div class="novel_name">${novel_name}</div><div class="novel_tyosya">${tyosya}</div><div class="novel_genre">${genre}</div><div class="novel_link"><a href="${url}" target="_blanck">詳細</a></div><div onclick="add_bookshelf(${index})" class="novel_add">本棚に追加</div><div class="novel_read" onclick="add_read(${index})">今すぐ読む</div></div>`
+}
+
+
+
 // get_aozora("https://aozorahack.org/aozorabunko_text/cards/000083/files/496_ruby_19865/496_ruby_19865.txt")

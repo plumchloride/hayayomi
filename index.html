@@ -10,8 +10,8 @@
     <script src="./script.js" defer></script>
     <script src="./ui.js" defer></script>
     <script src="./canvas.js" defer></script>
-    <script src="./segment.js"></script>
-    <script src="./serch.js"></script>
+    <script src="./segment.js" defer></script>
+    <script src="./serch.js" defer></script>
   </head>
   <body>
     <nav>
@@ -133,7 +133,7 @@
         本棚
       </div>
       <div id="ser" class="non-visi">
-        <p>本検索・データには青空文庫のデータを用いてます。青空文庫は誰にでもアクセスできる自由な電子本のサイトです。該当サイトに存在している小説のみ閲覧が可能です。</p>
+        <p id="top_id">本検索・データには青空文庫のデータを用いてます。青空文庫は誰にでもアクセスできる自由な電子本のサイトです。該当サイトに存在している小説のみ閲覧が可能です。</p>
         <form onsubmit="serch();return false;">
           <label> 作品名<input type="text" id="sakuhin" class="sech-text" autocomplete="off"></label><br>
           <label> 著者名<input type="text" id="tyosya" class="sech-text" autocomplete="off"></label><br>
