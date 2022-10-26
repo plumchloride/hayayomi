@@ -7,11 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unpkg.com/sanitize.css">
     <link rel="stylesheet" href="./style.css">
-    <script src="./script.js" defer></script>
+    <script src="./segment_handler.js" defer></script>
     <script src="./ui.js" defer></script>
     <script src="./canvas.js" defer></script>
     <script src="./segment.js" defer></script>
     <script src="./serch.js" defer></script>
+    <script src="./read.js" defer></script>
   </head>
   <body>
     <nav>
@@ -30,7 +31,7 @@
       <div id="inf">
         <h2>hayayomiとは</h2>
         <p>hayayomiとは高速逐次視覚提示（RSVP）を用いて高速に読書を行う事が出来るアプリケーションです。<br>
-        RSVPとは同じ場所に単語を高速で表示する（フラッシュ暗算のように）事で読書に必要な眼球運動無くし高速に文字を読むことが出来る手法です。</p>
+        RSVPとは同じ場所に単語を高速で表示する（フラッシュ暗算のように）事で読書に必要な眼球運動を無くし高速に文字を読むことが出来る手法です。</p>
         <p>ただしこの手法では文字を"後戻り"する事が出来ず、文章への理解力に影響が出ます<a href="https://journals.sagepub.com/doi/full/10.1177/1529100615623267">[1]</a>。<br>
           また、適切な速度で読書を行う事でストレスレベル低下<a href="https://www.telegraph.co.uk/news/health/news/5070874/Reading-can-help-reduce-stress.html">[2]</a>につながるため、本アプリケーションではリラックス目的には向いていません</p>
         <p>以上より、内容への適切な理解・ストレスレベル低下には役立つ事はありませんが、文章の流し読みや全体の流れの把握に用いる事が出来ます。</p>
@@ -128,6 +129,7 @@
       </div>
       <div id="rea" class="non-visi">
         <canvas id="canvas">このブラウザは HTML5 Canvas に対応していません。</canvas>
+        <div>再生</div>
       </div>
       <div id="hon" class="non-visi">
         本棚
@@ -144,7 +146,7 @@
           <span class="serch_examples" onclick="ex_sarch('edo')">江戸川 乱歩</span><span class="serch_examples" onclick="ex_sarch('dazai')">太宰 治</span>　ランダム表示：<span class="serch_examples" onclick="random_serch()">ランダム</span>
         </div>
         <div id="novels">
-          <div id="n-18" class="novel"><div class="novel_name">名前</div><div class="novel_tyosya">著者</div><div class="novel_genre">ジャンル</div><div class="novel_link"><a href="https://plum-chloride.jp">詳細</a></div><div class="novel_add">本棚に追加</div><div class="novel_read">今すぐ読む</div></div>
+          <div class="novel"><div class="novel_name">名前</div><div class="novel_tyosya">著者</div><div class="novel_lang">言語</div><div class="novel_genre">ジャンル</div><div class="novel_link"><a href="https://plum-chloride.jp">詳細</a></div><div class="novel_add">　　　　　</div><div class="novel_read">　　　　　</div></div>
         </div>
       </div>
     </div>

@@ -15,9 +15,19 @@ const changepage = (topage)=>{
     if(topage == "rea" && e == topage){
       now_read = true
       read_change = true
-      create_hayayomi();
+      create_hayayomi(["前の文","今の文","後の文"],1,[false,false,false],false);
     }else if(!read_change){
       now_read = false
     }
   })
+}
+
+
+// 今すぐ読むクリック
+let segmented_dic = {}
+async function add_read(index){
+  text = await get_aozora(serch_data.text_url[index],serch_data.decord[index])
+  segmented_dic = await segment(text)
+  changepage("rea")
+  create_hayayomi(segmented_dic.text,0,segmented_dic.talk,false)
 }

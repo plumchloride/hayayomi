@@ -8,7 +8,7 @@ const ex_sarch = (sakusya)=>{
 }
 // 検索フォーム制御
 const serch = () =>{
-  $novels.innerHTML = ""
+  $novels.innerHTML = `<div class="novel"><div class="novel_name">名前</div><div class="novel_tyosya">著者</div><div class="novel_lang">言語</div><div class="novel_genre">ジャンル</div><div class="novel_link"><a href="https://plum-chloride.jp">詳細</a></div><div class="novel_add">　　　　　</div><div class="novel_read">　　　　　</div></div>`
   var nov_name = document.getElementById("sakuhin").value
   var nov_tyosya = document.getElementById("tyosya").value
   var filter_name_index = []
@@ -22,7 +22,7 @@ const serch = () =>{
     if(index>200){
       over = true
     }else{
-      create_serch_row(serch_data.name[e],serch_data.tyosya[e],serch_data.bunrui[e],serch_data.sakuhin_url[e],e)
+      create_serch_row(serch_data.name[e],serch_data.tyosya[e],serch_data.bunrui[e],serch_data.sakuhin_url[e],e,serch_data.mozi[e])
     }
   })
   if(over){
@@ -30,12 +30,12 @@ const serch = () =>{
   }
 }
 const random_serch = ()=>{
-  $novels.innerHTML = ""
+  $novels.innerHTML = `<div class="novel"><div class="novel_name">名前</div><div class="novel_tyosya">著者</div><div class="novel_lang">言語</div><div class="novel_genre">ジャンル</div><div class="novel_link"><a href="https://plum-chloride.jp">詳細</a></div><div class="novel_add">　　　　　</div><div class="novel_read">　　　　　</div></div>`
   var random_index = []
-  for(let i = 0;i<10;i++){
+  for(let i = 0;i<9;i++){
     var random = Math.floor(Math.random() * serch_data.name.length)
     random_index.push(random)
-    create_serch_row(serch_data.name[random],serch_data.tyosya[random],serch_data.bunrui[random],serch_data.sakuhin_url[random],random)
+    create_serch_row(serch_data.name[random],serch_data.tyosya[random],serch_data.bunrui[random],serch_data.sakuhin_url[random],random,serch_data.mozi[random])
   }
 }
 // イニシャライズ
@@ -70,28 +70,33 @@ const decode_csv = (datas)=>{
   var row = datas.split(/\r\n|\n/);
   row.forEach((element,index) => {
     var data = element.split(",");
-    if(index & data[5] == "なし"){
+    if(index && data[5] == "なし"){
       serch_data.name.push(data[1]);
-      serch_data.bunrui.push(NDC[parseInt(data[3].slice(4,7))]);
+      serch_data.bunrui.push(NDC[parseInt(data[3].slice(4,7))]||"未定義");
       serch_data.mozi.push(data[4]);
       serch_data.sakuhin_url.push(data[6]);
       serch_data.tyosya.push(data[8]+data[9]);
       serch_data.syuppan.push(data[10]);
+      serch_data.decord.push(data[12]);
       serch_data.text_url.push(data[11].replace("www.aozora.gr.jp","aozorahack.org/aozorabunko_text").replace(".zip",`${data[11].slice(data[11].lastIndexOf("/"),data[11].lastIndexOf("."))}.txt`));
     }
   });
 }
 
-const get_aozora = (text_url)=>{
-  var _request = new XMLHttpRequest();
-  _request.addEventListener('load', (event) => {
-    const response = event.target.responseText;
-    var text = azozora_remove(response)
-    console.log(text);
+const decos = {"ShiftJIS":"Shift_JIS"}
+function get_aozora(text_url,deco){
+  const p = new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest();
+    xhr.addEventListener('load', (event) => {
+      const response = event.target.responseText;
+      var text = azozora_remove(response)
+      resolve(text)
+    });
+    xhr.overrideMimeType(`text/plain; charset=${decos[deco]}`);
+    xhr.open('GET', text_url, true);
+    xhr.send();
   });
-  _request.overrideMimeType('text/plain; charset=Shift_JIS');
-  _request.open('GET', text_url, true);
-  _request.send();
+  return p
 }
 const azozora_remove = (text)=>{
   text = text.slice(text.lastIndexOf("-------------------------------------------------------")+56,text.lastIndexOf("底本："))
@@ -104,8 +109,8 @@ const azozora_remove = (text)=>{
   return text
 }
 const $novels = document.getElementById("novels")
-const create_serch_row = (novel_name,tyosya,genre,url,index)=>{
-  $novels.innerHTML += `<div id="n-${index}" class="novel"><div class="novel_name">${novel_name}</div><div class="novel_tyosya">${tyosya}</div><div class="novel_genre">${genre}</div><div class="novel_link"><a href="${url}" target="_blanck">詳細</a></div><div onclick="add_bookshelf(${index})" class="novel_add">本棚に追加</div><div class="novel_read" onclick="add_read(${index})">今すぐ読む</div></div>`
+const create_serch_row = (novel_name,tyosya,genre,url,index,lang)=>{
+  $novels.innerHTML += `<div id="n-${index}" class="novel"><div class="novel_name">${novel_name}</div><div class="novel_tyosya">${tyosya}</div><div class="novel_lang">${lang}</div><div class="novel_genre">${genre}</div><div class="novel_link"><a href="${url}" target="_blanck">詳細</a></div><div onclick="add_bookshelf(${index})" class="novel_add">本棚に追加</div><div class="novel_read" onclick="add_read(${index})">今すぐ読む</div></div>`
 }
 
 
