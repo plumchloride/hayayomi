@@ -86,3 +86,76 @@ nav{
   width: 85vw;
   height:70vh;
 }
+
+
+
+#ser{
+  margin-left: 20px;
+}
+.sech-text{
+  margin-top: 20px;
+  margin-left: 20px;
+  width: 50vw;
+  height: 40px;
+  border-radius: 20px;
+  padding: 0px 20px;
+  font-size: large;
+}
+
+#serch_example{
+  margin-top: 30px;
+  margin-left: 20px;
+}
+#serch_example .serch_examples{
+  margin: 10px;
+  padding: 10px;
+  background-color: #daccb6;
+  cursor: pointer;
+  user-select: none;
+}
+#serch_btn{
+  margin-top: 20px;
+  margin-left: 25vw;
+  padding: 5px 20px;
+  font-size: large;
+  border-radius: 20px;
+  cursor: pointer;
+}
+#novels{
+  margin-right: 20px;
+  margin-top: 30px;
+}
+#novels .novel{
+  width: 100%;
+  padding: 10px 20px;
+  border-bottom: solid 1px #000;
+}
+
+.novel{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.novel_name{
+  width: 30%;
+}
+.novel_tyosya{
+  width: 20%;
+}
+.novel_genre{
+  width: 20%;
+}
+.novel_add{
+  cursor: pointer;
+  padding:10px 7px;
+  border-radius: 5px;
+  border: solid var(--text) 1px;
+  color: var(--text);
+}
+.novel_read{
+  padding: 10px 7px;
+  border-radius: 5px;
+  border: solid var(--text) 1px;
+  color: var(--text);
+  cursor: pointer;
+}

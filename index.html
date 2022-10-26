@@ -11,6 +11,7 @@
     <script src="./ui.js" defer></script>
     <script src="./canvas.js" defer></script>
     <script src="./segment.js"></script>
+    <script src="./serch.js"></script>
   </head>
   <body>
     <nav>
@@ -67,6 +68,7 @@
         <h2>利用規約</h2>
         <div id="info_text">
           <p>この利用規約（以下，「本規約」といいます。）は，大西力登（以下，「制作者」といいます。）がこのウェブサイト上で提供するサービス（以下，「本サービス」といいます。）の利用条件を定めるものです。</p>
+          <p>本アプリケーションに滞在している場合、本規約に同意したものとみなします。</p>
 
           <h4>第一条（適用）</h4>
           <p>本規約は，ユーザーの本サービスの利用に関わる一切の関係に適用されるものとします。</p>
@@ -131,7 +133,19 @@
         本棚
       </div>
       <div id="ser" class="non-visi">
-        検索
+        <p>本検索・データには青空文庫のデータを用いてます。青空文庫は誰にでもアクセスできる自由な電子本のサイトです。該当サイトに存在している小説のみ閲覧が可能です。</p>
+        <form onsubmit="serch();return false;">
+          <label> 作品名<input type="text" id="sakuhin" class="sech-text" autocomplete="off"></label><br>
+          <label> 著者名<input type="text" id="tyosya" class="sech-text" autocomplete="off"></label><br>
+          <button type="submit" id="serch_btn">検索</button>
+        </form>
+        <div id="serch_example">
+          例：　<span class="serch_examples" onclick="ex_sarch('natu')">夏目漱石</span><span class="serch_examples" onclick="ex_sarch('mori')">森 鴎外</span><span class="serch_examples" onclick="ex_sarch('aku')">芥川 竜之介</span>
+          <span class="serch_examples" onclick="ex_sarch('edo')">江戸川 乱歩</span><span class="serch_examples" onclick="ex_sarch('dazai')">太宰 治</span>　ランダム表示：<span class="serch_examples" onclick="random_serch()">ランダム</span>
+        </div>
+        <div id="novels">
+          <div id="n-18" class="novel"><div class="novel_name">名前</div><div class="novel_tyosya">著者</div><div class="novel_genre">ジャンル</div><div class="novel_link"><a href="https://plum-chloride.jp">詳細</a></div><div class="novel_add">本棚に追加</div><div class="novel_read">今すぐ読む</div></div>
+        </div>
       </div>
     </div>
   </body>
