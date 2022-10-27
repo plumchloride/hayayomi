@@ -140,8 +140,30 @@
           </div>
         </div>
         <div id="settings">
-          <div>テスト</div>
-          <div id="backgrounds"></div>
+          <div id="input_set">
+            <h2>表示時間数調整（ms）</h2>
+            <label>
+              ひらがな・カタカナ・英語<br>
+              <input id="kana" type="number" step="1" min="0" value="50" placeholder="50" autocomplete="off"><br>
+            </label>
+            <label>
+              拗音（小さい文字）<br>
+              <input id="mini" type="number" step="1" min="0" value="50" placeholder="50" autocomplete="off"><br>
+            </label>
+            <label>
+              漢字<br>
+              <input id="kanzi" type="number" step="1" min="0" value="70" placeholder="70" autocomplete="off"><br>
+            </label>
+            <label>
+              区切り文字「、。!?！？」（最小表示時間数に足されます）<br>
+              <input id="kugiri" type="number" step="1" min="0" value="100" placeholder="100" autocomplete="off"><br>
+            </label>
+            <label>
+              最小表示時間数<br>
+              <input id="min" type="number" step="1" min="0" value="200" placeholder="200" autocomplete="off"><br>
+            </label>
+          </div>
+          <div><div id="backgrounds"></div></div>
         </div>
       </div>
       <div id="hon" class="non-visi">

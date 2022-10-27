@@ -84,7 +84,7 @@ nav{
 
 #canvas{
   width: 85vw;
-  height:45vh;
+  height:40vh;
 }
 
 
@@ -218,18 +218,35 @@ nav{
 #backgrounds{
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
   justify-content: flex-start;
+  align-items: flex-start;
+  height: auto;
 }
 .bg_ex{
   padding: 10px;
   margin: 10px;
   border-radius: 10px;
   width: 80px;
+  height: 80px;
   cursor: pointer;
   text-align: center;
   border: #3f3f3f dotted 2px;
 }
 .bg_ex-current{
   border: var(--speak) solid 2px;
+}
+
+
+#input_set h2{
+  margin: 5px 0px;
+}
+#input_set input{
+  margin-left: 20px;
+  margin-bottom: 10px;
+  background-color: var(--bg);
+  border-color: var(--text);
+  color: var(--text);
+  text-align: right;
+  width: 120px;
+  font-size: large;
 }

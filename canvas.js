@@ -7,7 +7,7 @@ let font_size = 48
 // let font = "serif"
 let font = "'ＭＳ ゴシック'"
 let lineheight = 30
-let text_start = 100
+let text_start = 80
 
 
 var timeoutID = 0;
@@ -88,23 +88,23 @@ const create_hayayomi = (arr,index,talk_arr,save_name,continue_flag = true)=>{
   if(continue_flag && run){
   // if(true){
     if(index >  arr.length-2){
-      ;
+      nove_stop();
     }else{
       var delay_time = 0
-      var c_min_del = Number(min_del)
+      var c_min_del = Number(del_setting.min)
       arr[index].split("").forEach(e => {
         if(kanahiraeng_cha.indexOf(e)!=-1){
-          delay_time +=kana_del
+          delay_time +=del_setting.kana
         }else if(mini_cha.indexOf(e)!=-1){
-          delay_time +=mini
+          delay_time +=del_setting.mini
         }else if(fin_cha.indexOf(e)!=-1){
-          c_min_del +=fin
-          delay_time +=fin
+          c_min_del +=del_setting.kugiri
+          delay_time +=del_setting.kugiri
         }else{
-          delay_time +=kanzi_del
+          delay_time +=del_setting.kanzi
         }
       });
-      delay_time = delay_time>=min_del ? delay_time:min_del;
+      delay_time = delay_time>=del_setting.min ? delay_time:del_setting.min;
       clearTimeout(read_timeout);
       read_timeout = setTimeout(()=>{create_hayayomi(arr,index+=1,talk_arr,save_name)},delay_time)
     }
@@ -112,11 +112,8 @@ const create_hayayomi = (arr,index,talk_arr,save_name,continue_flag = true)=>{
     nove_stop();
   }
 }
-let kana_del = 50;
-let mini = 50;
-let fin = 100;
-let kanzi_del = 70;
-let min_del = 200;
+let del_setting = {"kana":50,"mini":50,"kanzi":70,"kugiri":100,"min":200}
+let del_setting_def = {"kana":50,"mini":50,"kanzi":70,"kugiri":100,"min":200}
 const kanahiraeng_cha = `あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをんがぎぐげござじずぜぞだぢづでどばびぶべぼぱぴぷぺぽっアイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲンガギグゲゴザジズゼゾダヂヅデドバビブベボパピプペポッqwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM`
 const mini_cha = `ゃゅょぁぃぅぇぉャュョァィゥェォ`
 const fin_cha = `、。!?！？`
@@ -135,3 +132,17 @@ const nove_start = ()=>{
   $cont.stop.classList.remove("non-visi")
   create_hayayomi(save.bun,save.index,save.talk,save.name,true);
 }
+
+Object.keys(del_setting_def).forEach(e=>{
+  document.getElementById(e).addEventListener("input",(e)=>{
+    var targ = e.target
+    var val = 0
+    console.log(targ.value,targ.getAttribute("id"))
+    if(targ.value == ""){
+      val = del_setting_def[targ.getAttribute("id")]
+    }else{
+      val = targ.value
+    }
+    del_setting[targ.getAttribute("id")] = Number(val)
+  })
+})
