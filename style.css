@@ -1,7 +1,7 @@
 :root {
   --bg:#FFFAF0;
-  --text:#000000;
-  --speak:#3f3f3f;
+  --text:#333333;
+  --speak:#6699ff;
   --navbg:#22272E;
   --navtext:#e7e8e9;
 }
@@ -84,7 +84,7 @@ nav{
 
 #canvas{
   width: 85vw;
-  height:70vh;
+  height:45vh;
 }
 
 
@@ -93,6 +93,7 @@ nav{
   margin-left: 20px;
   max-height: 100vh;
   overflow-y: scroll;
+  color: var(--text);
 }
 .sech-text{
   margin-top: 20px;
@@ -108,10 +109,24 @@ nav{
   margin-top: 30px;
   margin-left: 20px;
 }
+#ser input{
+  background-color: var(--bg);
+  border: var(--text) solid 3px;
+  color: var(--text);
+}
+#ser a{
+  color: var(--speak);
+}
+#ser button{
+  background-color: var(--bg);
+  border: var(--text) solid 2px;
+  color: var(--text);
+}
 #serch_example .serch_examples{
   margin: 10px;
   padding: 10px;
-  background-color: #daccb6;
+  background-color: rgba(0,0,0,0.1);
+  color: var(--speak);
   cursor: pointer;
   user-select: none;
 }
@@ -163,4 +178,58 @@ nav{
   border: solid var(--text) 1px;
   color: var(--text);
   cursor: pointer;
+}
+
+#rea{
+  height: 100vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  color: var(--text);
+}
+#canvas_bot{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+#canvas_bot p{
+  margin: 5px;
+}
+#canvas_bot #novel_volume{
+  margin-left: 20px;
+  width: 40vw;
+  accent-color: var(--speak);
+}
+
+#control_panel{
+  padding-top: 10px;
+}
+#control_panel svg{
+  cursor: pointer;
+  color: var(--text);
+  margin: 5px;
+}
+#settings{
+  display: flex;
+  justify-content: space-around;
+}
+#settings >div{
+  width: 35vw;
+}
+#backgrounds{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  justify-content: flex-start;
+}
+.bg_ex{
+  padding: 10px;
+  margin: 10px;
+  border-radius: 10px;
+  width: 80px;
+  cursor: pointer;
+  text-align: center;
+  border: #3f3f3f dotted 2px;
+}
+.bg_ex-current{
+  border: var(--speak) solid 2px;
 }

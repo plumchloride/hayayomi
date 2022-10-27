@@ -129,10 +129,23 @@
       </div>
       <div id="rea" class="non-visi">
         <canvas id="canvas">このブラウザは HTML5 Canvas に対応していません。</canvas>
-        <div>再生</div>
+        <div id="canvas_bot">
+          <p id="read_title">アプリ説明</p>
+          <p id="read_index"><span id="index_cu">0</span>/<span id="index_max">0</span><input type="range" id="novel_volume" name="volume"min="0" max="11" step="1"></p>
+          <div id="control_panel">
+            <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48" viewBox="0 0 48 48" id="sk_prev"><path d="M11 36V12h3v24Zm26 0L19.7 24 37 12Zm-3-12Zm0 6.25v-12.5L24.95 24Z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48" viewBox="0 0 48 48" id="pause" class="non-visi" onclick="nove_stop()"><path d="M28.25 38V10H36v28ZM12 38V10h7.75v28Z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48" viewBox="0 0 48 48" id="play" onclick="nove_start()"><path d="M16 37.85v-28l22 14Zm3-14Zm0 8.55 13.45-8.55L19 15.3Z"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" height="48" width="48" viewBox="0 0 48 48" id="sk_next"><path d="M34 36V12h3v24Zm-23 0V12l17.3 12Zm3-12Zm0 6.25L23.05 24 14 17.75Z"/></svg>
+          </div>
+        </div>
+        <div id="settings">
+          <div>テスト</div>
+          <div id="backgrounds"></div>
+        </div>
       </div>
       <div id="hon" class="non-visi">
-        本棚
+        <h2>本棚機能は未実装です。今後実装する予定です。</h2>
       </div>
       <div id="ser" class="non-visi">
         <p id="top_id">本検索・データには青空文庫のデータを用いてます。青空文庫は誰にでもアクセスできる自由な電子本のサイトです。該当サイトに存在している小説のみ閲覧が可能です。</p>
