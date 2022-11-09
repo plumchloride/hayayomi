@@ -60,7 +60,7 @@ document.getElementById("sk_next").addEventListener("click",(e)=>{
 // イニシャライズ
 // 色追加
 let col = {};
-let current_col = {"bg": '#fffaf0', "prime": '#008000', "sub": '#ff0000'}
+let current_col = {"bg": '#fffaf0', "prime": '#333333', "sub": '#6699ff'}
 const $col_picer = document.getElementById("backgrounds");
 (()=>{
   var _request = new XMLHttpRequest();
