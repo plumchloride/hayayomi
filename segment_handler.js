@@ -5,6 +5,7 @@ function segment(text){
   return new Promise(function(resolve) {
     var segmenter = new TinySegmenter();
     text = text.replace(/\s+/g, '');
+    text = text.replace(/』/g, '』 ');
     let segs = segmenter.segment(text);
     var segarray = []
     var talk_array = []
