@@ -14,10 +14,10 @@ function segment(text){
     segs.forEach(e=>{
       if(e ==""){
         ;
-      }else if(["「","』"].indexOf(e[0]) != -1){
+      }else if(["「","『"].indexOf(e[0]) != -1){
         segarray,seg,talk_array = seg_add(segarray,seg,talk_array,current_talk)
         current_talk = true
-        if(before_e != "」"){
+        if(before_e != "」" || before_e != "』"){
           segarray.push("")
           talk_array.push(false)
         }
