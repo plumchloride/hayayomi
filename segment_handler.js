@@ -14,7 +14,7 @@ function segment(text){
     segs.forEach(e=>{
       if(e ==""){
         ;
-      }else if(["「"].indexOf(e[0]) != -1){
+      }else if(["「","』"].indexOf(e[0]) != -1){
         segarray,seg,talk_array = seg_add(segarray,seg,talk_array,current_talk)
         current_talk = true
         if(before_e != "」"){
@@ -22,7 +22,7 @@ function segment(text){
           talk_array.push(false)
         }
         seg = ""
-      }else if(["」"].indexOf(e[0]) != -1){
+      }else if(["」","』"].indexOf(e[0]) != -1){
         segarray,seg,talk_array = seg_add(segarray,seg,talk_array,current_talk)
         current_talk = false
         segarray.push("")
